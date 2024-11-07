@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.08.2
+%define		kdeappsver	24.08.3
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kget
 Summary:	kget
 Name:		ka6-%{kaname}
-Version:	24.08.2
+Version:	24.08.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	d147fe03214fc3458b535b3edc92ccaa
+# Source0-md5:	b81bc7e8a9680c8ba1e57664599ae855
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6DBus-devel
@@ -61,6 +61,7 @@ BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires:	%{name}-data = %{version}-%{release}
 Obsoletes:	ka5-%{kaname} < %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -73,6 +74,19 @@ of downloading files, as well as the ability to restart a download.
 KGet jest wszechstronnym i łatwym w użyciu menadżerem pobierania.
 Cechy: pobiera plików przez FTP i HTTP(S). Wstrzymywanie i wznawianie
 pobierania plików, a także możliwość zrestartowania downloadu.
+
+%package data
+Summary:	Data files for %{kaname}
+Summary(pl.UTF-8):	Dane dla %{kaname}
+Group:		X11/Applications
+Obsoletes:	ka5-%{kaname}-data < %{version}
+BuildArch:	noarch
+
+%description data
+Data files for %{kaname}.
+
+%description data -l pl.UTF-8
+Dane dla %{kaname}.
 
 %prep
 %setup -q -n %{kaname}-%{version}
@@ -105,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f %{kaname}.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kget
 %{_libdir}/libkgetcore.so
@@ -119,6 +133,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_mirrorsearchfactory.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_mmsfactory.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_multisegkiofactory.so
+%dir %{_libdir}/qt6/plugins/kget_kcms
+%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_bittorrentfactory.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_checksumsearchfactory.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_metalinkfactory.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mirrorsearchfactory.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mmsfactory.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_multisegkiofactory.so
+
+%files data -f %{kaname}.lang
+%defattr(644,root,root,755)
 %{_desktopdir}/org.kde.kget.desktop
 %{_datadir}/config.kcfg/kget.kcfg
 %{_datadir}/config.kcfg/kget_checksumsearchfactory.kcfg
@@ -132,11 +156,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/metainfo/org.kde.kget.appdata.xml
 %{_datadir}/qlogging-categories6/kget.categories
 %{_datadir}/kio/servicemenus/kget_download.desktop
-%dir %{_libdir}/qt6/plugins/kget_kcms
-%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_bittorrentfactory.so
-%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_checksumsearchfactory.so
-%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_metalinkfactory.so
-%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mirrorsearchfactory.so
-%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mmsfactory.so
-%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_multisegkiofactory.so
 %{_datadir}/kio/servicemenus/kget_plugin.desktop
