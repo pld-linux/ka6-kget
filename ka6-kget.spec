@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.12.3
+%define		kdeappsver	25.04.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kget
 Summary:	kget
 Name:		ka6-%{kaname}
-Version:	24.12.3
+Version:	25.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	d5e52c8d7430ad7490a6f140c53bdfb1
+# Source0-md5:	c517077638437a721504ac89897d614e
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6DBus-devel
@@ -150,9 +150,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kget_mmsfactory.kcfg
 %{_datadir}/config.kcfg/kget_multisegkiofactory.kcfg
 %{_datadir}/dbus-1/services/org.kde.kget.service
-%{_iconsdir}/hicolor/*x*/apps/kget.png
 %{_datadir}/kget
 %{_datadir}/knotifications6/kget.notifyrc
 %{_datadir}/metainfo/org.kde.kget.appdata.xml
 %{_datadir}/qlogging-categories6/kget.categories
 %{_datadir}/kio/servicemenus/kget_download.desktop
+%{_iconsdir}/hicolor/scalable/apps/org.kde.kget.svg
