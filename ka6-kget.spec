@@ -8,12 +8,13 @@
 Summary:	kget
 Name:		ka6-%{kaname}
 Version:	25.04.3
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
 # Source0-md5:	af2eab932ffccfb8dced68561d1a60f6
 URL:		http://www.kde.org/
+Patch0:		GPGME-2.0.patch
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6DBus-devel
 BuildRequires:	Qt6Gui-devel
@@ -91,6 +92,7 @@ Dane dla %{kaname}.
 
 %prep
 %setup -q -n %{kaname}-%{version}
+%patch -P0 -p1
 
 %build
 %cmake \
