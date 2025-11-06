@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	25.08.2
+%define		kdeappsver	25.08.3
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kget
 Summary:	kget
 Name:		ka6-%{kaname}
-Version:	25.08.2
-Release:	2
+Version:	25.08.3
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	5f5480cf97f4c124472f3aae69cc5e5d
+# Source0-md5:	19332a3204ca160d0afbcb49051db4c1
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6DBus-devel
@@ -132,22 +132,22 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kget
 %{_libdir}/libkgetcore.so
 %ghost %{_libdir}/libkgetcore.so.6
-%attr(755,root,root) %{_libdir}/libkgetcore.so.*.*
+%{_libdir}/libkgetcore.so.*.*
 %dir %{_libdir}/qt6/plugins/kget
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_bittorrent.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_checksumsearchfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_kio.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_metalinkfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_mirrorsearchfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_mmsfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget/kget_multisegkiofactory.so
+%{_libdir}/qt6/plugins/kget/kget_bittorrent.so
+%{_libdir}/qt6/plugins/kget/kget_checksumsearchfactory.so
+%{_libdir}/qt6/plugins/kget/kget_kio.so
+%{_libdir}/qt6/plugins/kget/kget_metalinkfactory.so
+%{_libdir}/qt6/plugins/kget/kget_mirrorsearchfactory.so
+%{_libdir}/qt6/plugins/kget/kget_mmsfactory.so
+%{_libdir}/qt6/plugins/kget/kget_multisegkiofactory.so
 %dir %{_libdir}/qt6/plugins/kget_kcms
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_bittorrentfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_checksumsearchfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_metalinkfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mirrorsearchfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mmsfactory.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kget_kcms/kcm_kget_multisegkiofactory.so
+%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_bittorrentfactory.so
+%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_checksumsearchfactory.so
+%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_metalinkfactory.so
+%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mirrorsearchfactory.so
+%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_mmsfactory.so
+%{_libdir}/qt6/plugins/kget_kcms/kcm_kget_multisegkiofactory.so
 
 %files data -f %{kaname}.lang
 %defattr(644,root,root,755)
